@@ -1,3 +1,9 @@
+# Integrantes
+
+- Morelia Hidalgo
+- Rodrigo Machaca
+- Adhemar Duran
+
 # Iniciar el proyecto
 
 Para setear el ambiente de desarrollo primera vez (linux):
