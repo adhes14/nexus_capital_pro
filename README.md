@@ -20,6 +20,16 @@ Despues de instalar una nueva dependencia correr el siguiente comando:
 pip3 freeze > requirements.txt
 ```
 
+Para crear las migraciones
+```sh
+python manage.py makemigrations
+```
+
+Para ejecutar las migraciones
+```sh
+python manage.py migrate
+```
+
 Para correr el proyecto:
 ```sh
 python manage.py runserver
@@ -36,7 +46,7 @@ El sistema deberá gestionar múltiples tipos de activos como acciones, ETFs y c
 ## Requisitos Generales
 
 1. Utilizar Django como framework principal para el desarrollo del sistema.
-2. Utilizar PostgreSQL como base de datos.
+2. Utilizar SQLite3 como base de datos.
 3. Gestionar múltiples fondos de inversión simultáneamente.
 
 ## Requisitos Funcionales
