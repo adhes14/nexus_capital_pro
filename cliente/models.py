@@ -1,5 +1,6 @@
 from django.db import models
 from .validators import validar_solo_numeros, validar_numeros_negativos
+from fondos.models import Fondo
 
 class Cliente (models.Model):
     nombres = models.CharField(max_length=100)
@@ -31,6 +32,7 @@ class CarteraCliente (models.Model):
     valor_cuota = models.DecimalField(max_digits=10, decimal_places=5, validators=[validar_numeros_negativos])
     fecha = models.DateField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    fondo = models.ForeignKey(Fondo, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     def __str__(self):
