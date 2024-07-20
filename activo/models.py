@@ -1,14 +1,16 @@
 from django.db import models
+from .validators import validar_hora, validar_no_caracteres_especiales
+from activo import validators
 
 class Mercado(models.Model):
-    nombre = models.CharField(max_length=80, unique=True)
-    horario = models.DateTimeField(null=True, blank=True)
+    nombre = models.CharField(max_length=80, unique=True, validators=[validar_no_caracteres_especiales])
+    horario = models.TimeField(null=True, blank=True, validators=[validar_hora])
 
     def __str__(self):
         return self.nombre
 
 class Activo(models.Model):
-    nombre = models.CharField(max_length=80, unique=True)
+    nombre = models.CharField(max_length=80, unique=True, validators=[validar_no_caracteres_especiales])
     mercado = models.ForeignKey(Mercado, on_delete=models.CASCADE)
     ticker = models.CharField(max_length=40, unique=True)
 
@@ -28,5 +30,6 @@ class PrecioHistorico(models.Model):
         choices=MonedaVal.choices,
         default=MonedaVal.USD,
     )
-
+    def __str__(self):
+        return self.activo.nombre
 
