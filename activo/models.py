@@ -2,7 +2,7 @@ from django.db import models
 
 class Mercado(models.Model):
     nombre = models.CharField(max_length=80, unique=True)
-    horario = models.DateTimeField(null=True, blank=True)
+    horario = models.TimeField(null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -28,5 +28,6 @@ class PrecioHistorico(models.Model):
         choices=MonedaVal.choices,
         default=MonedaVal.USD,
     )
-
+    def __str__(self):
+        return self.activo.nombre
 
