@@ -18,7 +18,7 @@ class Cliente (models.Model):
     
 class Billetera (models.Model):
     fecha = models.DateField()
-    importe = models.DecimalField(max_digits=10, decimal_places=5, validators=[validar_numeros_negativos])
+    importe = models.DecimalField(max_digits=10, decimal_places=2)
     concepto = models.TextField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
