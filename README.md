@@ -35,6 +35,11 @@ Para correr el proyecto:
 python manage.py runserver
 ```
 
+Para crear el super usuario:
+```sh
+python manage.py createsuperuser
+```
+
 # Antecedentes
 
 La empresa Nexus Capital Pro se dedica a la gestión de fondos de inversión y busca modernizar y automatizar sus operaciones mediante el desarrollo de un sistema web basado en Django. Este sistema permitirá una gestión eficiente de los activos, la valoración de fondos, y brindará a los clientes acceso a información actualizada sobre sus inversiones. Se espera que el sistema mejore la transparencia y la precisión en la gestión de los fondos, así como la experiencia del usuario tanto para administradores como para clientes.
@@ -51,30 +56,26 @@ El sistema deberá gestionar múltiples tipos de activos como acciones, ETFs y c
 
 ## Requisitos Funcionales
 
-### [Must Have]
+### Alcance
 1. El sistema debe soportar dos tipos de usuarios: administradores y clientes.
 2. Los administradores deben poder registrar compras y ventas de activos (acciones, ETFs, criptomonedas).
 3. Los clientes deben poder consultar el estado de su inversión.
 4. Los activos deben poder clasificarse según su tipo y características de mercado.
-5. El sistema debe calcular automáticamente el valor de la cuota de un fondo al cierre de cada día.
-6. Los clientes solo pueden comprar cuotas de los fondos disponibles.
-7. Integración con servicios REST para obtener precios de activos en tiempo real.
-8. Registrar comisiones por operación y administración de fondos.
-9. Registrar ingresos y retiros de fondos por parte de los clientes.
-10. Permitir a los clientes comprar cuotas de los fondos y registrar la evolución del valor de sus inversiones.
-11. Los fondos deben manejar la liquidez en función de las inversiones de los clientes y las transacciones de compra y venta de activos.
-12. Mantener un historial de precios de los activos.
-13. Registrar las posiciones de los fondos en diferentes activos.
-14. Mantener un historial del valor de las cuotas, la liquidez y la cartera de cada fondo.
-15. Registrar los movimientos de efectivo de los clientes en una entidad Billetera.
+5. Los clientes solo pueden comprar cuotas de los fondos disponibles.
+6. Registrar comisiones por operación y administración de fondos.
+7. Registrar ingresos y retiros de fondos por parte de los clientes.
+8. Permitir a los clientes comprar cuotas de los fondos y registrar la evolución del valor de sus inversiones.
+9. Los fondos deben manejar la liquidez en función de las inversiones de los clientes y las transacciones de compra y venta de activos.
+10. Integración con servicios REST para obtener precios de activos en tiempo real.
+11. Mantener un historial de precios de los activos.
+12. Registrar las posiciones de los fondos en diferentes activos.
+13. Mantener un historial del valor de las cuotas, la liquidez y la cartera de cada fondo.
+14. Registrar los movimientos de efectivo de los clientes en una entidad Billetera.
 
-### [Should Have]
+### Fuera de alcance, posibles mejoras futuras
 1. Interfaz de usuario intuitiva y fácil de usar.
 2. Notificaciones automáticas para los usuarios sobre cambios importantes.
-
-### [Could Have]
-1. Análisis gráfico del rendimiento de los fondos.
-2. Reportes detallados descargables para administradores y clientes.
-
-### [Won't Have]
-1. Funcionalidades de trading en tiempo real directamente en el sistema.
+3. Análisis gráfico del rendimiento de los fondos.
+4. Reportes detallados descargables para administradores y clientes.
+5. Cálculo automético del valor de la cuota de un fondo al cierre de cada día.
+6. Funcionalidades de trading en tiempo real directamente en el sistema.
