@@ -1,4 +1,6 @@
 from django.db import models
+from activo.models import Activo
+
 
 class Fondo(models.Model):
     nombre = models.CharField(max_length=100)
@@ -35,3 +37,29 @@ class FondoLiquidez(models.Model):
 
     def __str__(self):
         return f'{self.fondo.nombre} - {self.fecha}'
+    
+class Posicion(models.Model):
+    fondo = models.ForeignKey(Fondo, on_delete=models.CASCADE)
+    activo = models.ForeignKey(Activo, on_delete=models.CASCADE)
+    abierta = models.BooleanField()
+
+    def __str__(self):
+        return f'{self.fondo.nombre} - {self.activo.nombre}'
+
+class TipoTransaccion(models.TextChoices):
+    COMPRA = 'compra', 'COMPRA'
+    VENTA = 'venta', 'VENTA'
+
+class Transaccion(models.Model):
+    posicion = models.ForeignKey(Posicion, on_delete=models.CASCADE)
+    tipo = models.CharField(
+        max_length=6,
+        choices=TipoTransaccion.choices,
+    )
+    fecha = models.DateField()
+    cantidad = models.DecimalField(max_digits=10, decimal_places=5)
+    precio = models.DecimalField(max_digits=10, decimal_places=2)
+    comision = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f'{self.posicion.fondo.nombre} - {self.posicion.activo.nombre} - {self.fecha}'

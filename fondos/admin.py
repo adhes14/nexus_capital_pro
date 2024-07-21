@@ -1,5 +1,5 @@
 from django.contrib import admin
-from fondos.models import Fondo, FondoCuota, FondoHistorico, FondoLiquidez
+from fondos.models import Fondo, FondoCuota, FondoHistorico, FondoLiquidez, Posicion, Transaccion
 
 class FondoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'fecha_inicio')
@@ -32,3 +32,19 @@ class FondoLiquidezAdmin(admin.ModelAdmin):
     ordering = ('fondo', 'fecha')
 
 admin.site.register(FondoLiquidez, FondoLiquidezAdmin)
+
+class PosicionAdmin(admin.ModelAdmin):
+    list_display = ('fondo', 'activo', 'abierta')
+    search_fields = ('fondo__nombre', 'activo__nombre')
+    list_filter = ('fondo', 'activo')
+    ordering = ('fondo', 'activo')
+
+admin.site.register(Posicion, PosicionAdmin)
+
+class TransaccionAdmin(admin.ModelAdmin):
+    list_display = ('posicion', 'tipo', 'fecha', 'cantidad')
+    search_fields = ('posicion__fondo__nombre', 'posicion__activo__nombre', 'tipo', 'fecha')
+    list_filter = ('posicion', 'tipo', 'fecha')
+    ordering = ('posicion', 'fecha')
+
+admin.site.register(Transaccion, TransaccionAdmin)
