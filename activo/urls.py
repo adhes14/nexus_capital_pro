@@ -9,5 +9,9 @@ router.register(r'preciosHistoricos', views.PrecioHistoricoViewSet)
 
 urlpatterns = [
     #path('', views.index),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    # path('activos/crear/', views.ActivoCreateView.as_view()),
+    # path('activos/actualizar/', views.ActivoUpdateView.as_view()),
+    # path('mercados/crear/', views.MercadoCreateView.as_view()),
+    path('activos/filtrar/dolar', views.activos_dolar)
 ]
