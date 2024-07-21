@@ -1,5 +1,6 @@
 from django.db import models
 from activo.models import Activo
+from .validators import validar_cero, validar_fecha_futura
 
 
 class Fondo(models.Model):
@@ -31,8 +32,8 @@ class FondoHistorico(models.Model):
     
 class FondoLiquidez(models.Model):
     fondo = models.ForeignKey(Fondo, on_delete=models.CASCADE)
-    fecha = models.DateField()
-    importe = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha = models.DateField(validators=[validar_fecha_futura])
+    importe = models.DecimalField(max_digits=10, decimal_places=2, validators=[validar_cero])
     concepto = models.CharField(max_length=200)
 
     def __str__(self):
