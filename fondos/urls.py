@@ -15,4 +15,5 @@ urlpatterns = [
     path("formulario", views.index, name="fondos"),
     path("fondo_liquidez", views.fondoLiquidezFormView, name="fondo_liquidez"),
     path("", include(router.urls)),
+    path("generic", views.FondosGenericView.as_view(), name="fondos_generic"),
 ]

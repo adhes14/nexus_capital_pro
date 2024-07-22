@@ -9,7 +9,7 @@ from .models import (
     Transaccion,
 )
 from .form import FondoLiquidezForm
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from .serializers import (
     FondoSerializer,
     FondoCuotaSerializer,
@@ -60,6 +60,13 @@ def fondoLiquidezFormView(request):
 
 
 class FondosViewSet(viewsets.ModelViewSet):
+    queryset = Fondo.objects.all()
+    serializer_class = FondoSerializer
+
+
+class FondosGenericView(
+    generics.ListCreateAPIView, generics.CreateAPIView, generics.UpdateAPIView
+):
     queryset = Fondo.objects.all()
     serializer_class = FondoSerializer
 
