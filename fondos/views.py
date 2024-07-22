@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import (
     Fondo,
     FondoLiquidez,
@@ -18,6 +18,8 @@ from .serializers import (
     PosicionSerializer,
     TransaccionSerializer,
 )
+from django.db.models import Sum, DecimalField
+from rest_framework.decorators import api_view
 
 
 def index(request):
@@ -94,3 +96,27 @@ class PosicionViewSet(viewsets.ModelViewSet):
 class TransaccionViewSet(viewsets.ModelViewSet):
     queryset = Transaccion.objects.all()
     serializer_class = TransaccionSerializer
+
+
+@api_view(["GET"])
+def saldo_liquidez(request):
+    """
+    Obtiene el saldo de liquidez de un fondo
+    """
+
+    try:
+        fondo_id = request.GET.get("fondo_id")
+        saldo = FondoLiquidez.objects.filter(fondo_id=fondo_id).aggregate(
+            Sum("importe", output_field=DecimalField())
+        )["importe__sum"]
+        return JsonResponse(
+            {"saldo": saldo},
+            safe=False,
+            status=200,
+        )
+    except Exception as e:
+        return JsonResponse(
+            {"error": str(e)},
+            safe=False,
+            status=500,
+        )
