@@ -43,3 +43,6 @@ class TransaccionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaccion
         fields = "__all__"
+
+class SaldoLiquidezSerializer(serializers.Serializer):
+    saldo = serializers.DecimalField(max_digits=10, decimal_places=2)

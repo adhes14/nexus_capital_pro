@@ -17,6 +17,7 @@ from .serializers import (
     FondoLiquidezSerializer,
     PosicionSerializer,
     TransaccionSerializer,
+    SaldoLiquidezSerializer,
 )
 from django.db.models import Sum, DecimalField
 from rest_framework.decorators import api_view
@@ -110,7 +111,7 @@ def saldo_liquidez(request):
             Sum("importe", output_field=DecimalField())
         )["importe__sum"]
         return JsonResponse(
-            {"saldo": saldo},
+            SaldoLiquidezSerializer({"saldo": saldo}).data,
             safe=False,
             status=200,
         )
