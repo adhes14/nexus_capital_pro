@@ -1,0 +1,27 @@
+<h1>FONDOS</h1>
+
+<form action="{% url 'fondos' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>
+            <h1>Fondo</h1>
+        </legend>
+        {% if error_message %}
+            <p class="error"><strong>{{ error_message }}</strong></p>
+        {% endif %}
+
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+        <br>
+        <label for="fecha_inicio">Fecha de inicio</label>
+        <input type="date" name="fecha_inicio" id="fecha_inicio">
+        <br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<ul>
+    {% for catergoria in categorias %}
+        <li>{{ catergoria }}</li>
+    {% endfor %}
+</ul>
