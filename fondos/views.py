@@ -1,7 +1,24 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
-from .models import Fondo, FondoLiquidez
+from .models import (
+    Fondo,
+    FondoLiquidez,
+    FondoCuota,
+    FondoHistorico,
+    Posicion,
+    Transaccion,
+)
 from .form import FondoLiquidezForm
+from rest_framework import viewsets
+from .serializers import (
+    FondoSerializer,
+    FondoCuotaSerializer,
+    FondoHistoricoSerializer,
+    FondoLiquidezSerializer,
+    PosicionSerializer,
+    TransaccionSerializer,
+)
+
 
 def index(request):
     post_nombre = request.POST.get("nombre")
@@ -21,6 +38,7 @@ def index(request):
 def contact(request, name):
     return HttpResponse(f"Hola {name}, estamos en la App 'FONDOS'")
 
+
 def fondoLiquidezFormView(request):
     form = FondoLiquidezForm()
     fondo_liquidez = None
@@ -39,3 +57,33 @@ def fondoLiquidezFormView(request):
     if form.is_valid():
         form.save()
     return render(request, "fondos/fondo_liquidez_form.html", {"form": form})
+
+
+class FondosViewSet(viewsets.ModelViewSet):
+    queryset = Fondo.objects.all()
+    serializer_class = FondoSerializer
+
+
+class FondoCuotaViewSet(viewsets.ModelViewSet):
+    queryset = FondoCuota.objects.all()
+    serializer_class = FondoCuotaSerializer
+
+
+class FondoHistoricoViewSet(viewsets.ModelViewSet):
+    queryset = FondoHistorico.objects.all()
+    serializer_class = FondoHistoricoSerializer
+
+
+class FondoLiquidezViewSet(viewsets.ModelViewSet):
+    queryset = FondoLiquidez.objects.all()
+    serializer_class = FondoLiquidezSerializer
+
+
+class PosicionViewSet(viewsets.ModelViewSet):
+    queryset = Posicion.objects.all()
+    serializer_class = PosicionSerializer
+
+
+class TransaccionViewSet(viewsets.ModelViewSet):
+    queryset = Transaccion.objects.all()
+    serializer_class = TransaccionSerializer
