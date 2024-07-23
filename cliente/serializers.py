@@ -15,3 +15,7 @@ class CarteraClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarteraCliente
         fields = '__all__'
+        
+class ReporteBilleterasCliente(serializers.Serializer):
+    persona = serializers.CharField()
+    billeteras = BilleteraSerializer(many=True)
