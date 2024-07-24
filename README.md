@@ -79,3 +79,7 @@ El sistema deberá gestionar múltiples tipos de activos como acciones, ETFs y c
 4. Reportes detallados descargables para administradores y clientes.
 5. Cálculo automético del valor de la cuota de un fondo al cierre de cada día.
 6. Funcionalidades de trading en tiempo real directamente en el sistema.
+
+## Diagrama de entidades
+
+![Diagrama](./nexus_capital_pro.png)
